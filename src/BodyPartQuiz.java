@@ -24,6 +24,11 @@ public class BodyPartQuiz {
 	String thirdImage = "src/morgan.jpeg";
 	String fourthImage = "src/jack.jpeg";
 	
+	String firstName = "arnold";
+	String secondName = "leonardo";
+	String thirdName = "morgan";
+	String fourthName = "jack";
+	
 	JFrame window = new JFrame();
 	JPanel panel = new JPanel();
 
@@ -34,23 +39,79 @@ public class BodyPartQuiz {
 		int score=0;
 
 		// 2. Set the size of the window in the initializeGui() method below
+		window.setSize(250,300);
 		
 			
 		// 4. Ask the user who this person is and store their answer
 		String guess= JOptionPane.showInputDialog("who is this?");
 
 		// 5. Check their answer. If they guessed correctly:
+		if(guess.equals(firstName)) {
+			JOptionPane.showMessageDialog(null, "Correct!");
+			score+=1;
+		}else {
+			JOptionPane.showMessageDialog(null, "Incorrect!, the right answer is "+firstName);
+		}
 		// -- Tell them they are right and increase the score by 1
 
 		// 6. Otherwise:
 		// -- Tell them they are wrong and who the person is
 
 		// 7. Use the showNextImage() method below to get the next image
+		System.out.println("Score: "+score);
 		showNextImage();
+		
 	    	// 8. Show them their current score
+		
+		/*Second Image
+		 */
+		String guess2= JOptionPane.showInputDialog("who is this?");
 
+		if(guess2.equals(secondName)) {
+			JOptionPane.showMessageDialog(null, "Correct!");
+			score+=1;
+		}else {
+			JOptionPane.showMessageDialog(null, "Incorrect!, the right answer is "+secondName);
+		}
+		
+		System.out.println("Score: "+score);
+		showNextImage();
+		
+		
 		// 9. .... repeat for all your images.....
 
+		
+		/*Third Image
+		 */
+		String guess3= JOptionPane.showInputDialog("who is this?");
+
+		if(guess3.equals(thirdName)) {
+			JOptionPane.showMessageDialog(null, "Correct!");
+			score+=1;
+		}else {
+			JOptionPane.showMessageDialog(null, "Incorrect!, the right answer is "+thirdName);
+		}
+		
+		System.out.println("Score: "+score);
+		showNextImage();
+		
+		
+		/*Fourth Image
+		 */
+		String guess4= JOptionPane.showInputDialog("who is this?");
+
+		if(guess4.equals(fourthName)) {
+			JOptionPane.showMessageDialog(null, "Correct!");
+			score+=1;
+		}else {
+			JOptionPane.showMessageDialog(null, "Incorrect!, the right answer is "+fourthName);
+		}
+		
+		
+		JOptionPane.showMessageDialog(null, "Game Over! \n Score: "+score);
+		
+		
+		
 
 	}
 
@@ -105,4 +166,7 @@ public class BodyPartQuiz {
 		System.exit(0);
 		return new JLabel();
 	}
+	
+	
+	
 }
