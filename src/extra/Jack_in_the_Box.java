@@ -1,21 +1,27 @@
 package extra;
 
+import java.applet.AudioClip;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URL;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JApplet;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 public class Jack_in_the_Box implements ActionListener{
+
 	public static void main(String[] args) {
 		Jack_in_the_Box one = new Jack_in_the_Box();
-		one.showPicture("jackInTheBox.png");
+		one.showPicture();
 	}
-	
+	public void image() {
+		showPicture("src/jackInTheBox.png");
+	}
+	AudioClip sound;
 	JButton button = new JButton("Surprise");
 	
 	private void showPicture(String fileName) { 
@@ -29,6 +35,15 @@ public class Jack_in_the_Box implements ActionListener{
 	          frame.add(button);
 	          button.addActionListener(this);
 	          frame.pack();
+	     } catch (Exception e) {
+	          e.printStackTrace();
+	     }
+	}
+	
+	private void playSound(String soundFile) { 
+	     try {
+	          sound = JApplet.newAudioClip(getClass().getResource("src/152355__supermatt1896__cat-rats-drum-loop.wav"));
+	          sound.play();
 	     } catch (Exception e) {
 	          e.printStackTrace();
 	     }
@@ -59,7 +74,8 @@ public class Jack_in_the_Box implements ActionListener{
 		while(e.getSource()==button) {
 			counter++;
 			if(counter==5) {
-				showPicture("jackInTheBox.png");
+				image();
+				
 				break;
 			}
 			
