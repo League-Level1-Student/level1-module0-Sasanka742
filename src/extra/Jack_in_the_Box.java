@@ -11,38 +11,52 @@ import javax.swing.JApplet;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class Jack_in_the_Box implements ActionListener{
+	public static String pic = "jackInTheBox.png";
 
 	public static void main(String[] args) {
 		Jack_in_the_Box one = new Jack_in_the_Box();
-		one.showPicture();
+		
+		one.showPicture(pic);
 	}
-	public void image() {
-		showPicture("src/jackInTheBox.png");
-	}
+	int counter=0;
+	JLabel imageLabel;
 	AudioClip sound;
 	JButton button = new JButton("Surprise");
+	JFrame frame = new JFrame();
+	JPanel panel = new JPanel();
 	
 	private void showPicture(String fileName) { 
 	     try {
-	          JLabel imageLabel = createLabelImage(fileName);
-	          JFrame frame = new JFrame();
+	          imageLabel = createLabelImage(fileName);
 	          frame.setSize(500,500);
-	          frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	          frame.add(imageLabel);
 	          frame.setVisible(true);
-	          frame.add(button);
 	          button.addActionListener(this);
+	          panel.add(button);
+	          frame.add(panel);
 	          frame.pack();
+	          frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	     } catch (Exception e) {
 	          e.printStackTrace();
 	     }
 	}
 	
+	private void showPic() {
+		
+        panel.add(imageLabel);
+        frame.add(panel);
+        playSound("152355__supermatt1896__cat-rats-drum-loop.wav");
+        frame.pack();
+		
+	}
+	
+	
+	
 	private void playSound(String soundFile) { 
 	     try {
-	          sound = JApplet.newAudioClip(getClass().getResource("src/152355__supermatt1896__cat-rats-drum-loop.wav"));
+	          AudioClip sound = JApplet.newAudioClip(getClass().getResource(soundFile));
 	          sound.play();
 	     } catch (Exception e) {
 	          e.printStackTrace();
@@ -67,19 +81,14 @@ public class Jack_in_the_Box implements ActionListener{
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		JButton buttonPressed = (JButton) e.getSource();
-		int counter =0;
-		while(e.getSource()==button) {
+		JButton buttonPressed = (JButton) arg0.getSource();
 			counter++;
 			if(counter==5) {
-				image();
-				
-				break;
+				showPic();
 			}
 			
 		}
-		
-	}
+			
 }
