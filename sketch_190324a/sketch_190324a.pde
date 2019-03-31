@@ -1,20 +1,34 @@
-PImage pictureOfRecord;  
+int y;
+int score = 0;
 void setup(){
-  size(600, 600);  
-  pictureOfRecord = loadImage("recordLG.jpg");
-  pictureOfRecord.resize(600,600);
-}
-
-void rotateImage(PImage image, int amountToRotate) {
-     translate(width/2, height/2);
-     rotate(amountToRotate*TWO_PI/360);
-     translate(-image.width/2, -image.height/2);
+size(500,500);
+background(206,200,200);
 }
 
 void draw(){
-  image(pictureOfRecord, 0, 0); 
-  if(mousePressed){
-    rotateImage(pictureOfRecord ,3);
-    
-  }
+  
+int xPos = mouseX;
+int yPos = mouseY;
+
+int x = (int) random(width);
+int y = (int) random(height);
+fill(0,146,211);
+stroke(15,66,245);
+ellipse(x,y,10,20);
+
+rect( xPos,  yPos, 75, 100);
+}
+
+void checkCatch(int x){
+ 
+     if (x > mouseX && x < mouseX+100)
+          score++;
+     else if (score > 0) 
+          score--;
+     println("Your score is now: " + score); 
+     
+     fill(0, 0, 0);
+     textSize(30);
+     text("Score: " + score, 50, 50);
+
 }
